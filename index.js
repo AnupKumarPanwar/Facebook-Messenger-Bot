@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
+
 app.set('port', (process.env.PORT || 5000))
 
 // parse application/x-www-form-urlencoded
@@ -15,16 +16,24 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('Hello World! I\'m BNM Bot.' )
+	res.send('Hello World! I\'m Anup Kumar Panwar.' )
 })
 
 // for facebook verification
 app.get('/webhook/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'BNMBot') {
+	if (req.query['hub.verify_token'] === 'MyBot') {
 		res.send(req.query['hub.challenge'])
 	}
 	res.send('Error, wrong token')
 })
+
+
+
+//privacy policy
+app.get('/policy/', function (req, res) {
+	res.send('This App does not share user details with any 3rd party')
+})
+
 
 // to post data
 app.post('/webhook/', function (req, res) {
@@ -75,47 +84,62 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
-const token = "EAAZARqZCShCx8BAJuq2YD6ntlyeZApLUdLgggiCbVNFvPZBZCKUFn0cBv2pt5mY9B9pHB9iXZAwZBsfBQZBZAo2h4Mx47ZC2gztIy1jtM6lZBiDwvgBnNV4Cwhb1HCu3uMAJoZAZAdtPXirBdfZAZACNEjmDTIpfLhS9h7v59E97LIOpKXC6gZDZD"
+const token = "EAAImdkZBRFdUBAJjdXCttPEhPlV9qi9bQFckWKAnIGHv7es0ZBOVIQZCrw9ZCPYcqQbj4x5JZAsnxKevC9XOL1MeZCnZCIzZBRkMqrH4o5m44ZAkl3Rpmuvnc98ZCdNtypcKl67KevUBZCEd7eGzLgTcExU6Akksgi7pC8VS6fmm5xctwZDZD"
 
 function sendTextMessage(sender, text) {
+	
+	var API_msg='Hi';
+	
+
 	let receiveedData = { text:text }
 	var messageData={ text:text }
 
-	if (receiveedData.text.toLowerCase().indexOf("hi")!=-1) {messageData.text="Hello"}
-	if (receiveedData.text.toLowerCase().indexOf("how are you")!=-1) {messageData.text="I\'m good. What about you?"}
-	if (receiveedData.text.toLowerCase().indexOf("hello")!=-1) {messageData.text="Hi"}
-	if (receiveedData.text.toLowerCase().indexOf("help")!=-1) {messageData.text="Try the following commands : -\n 1. @assignment\n2. @attendence <roll no>\n3. @result <roll no>\n4. @book <topic name>\n5. @contact <teacher name>\n6. @date <event>\n7. @notes <topic>\n8. @syllabus\n9. @testme "}
-	if (receiveedData.text.toLowerCase().indexOf("@book database")!=-1) {messageData.text="Database System Concepts - Henry Korth, S.Sudarshan and Abraham Silberschatz."}
-	if (receiveedData.text.toLowerCase().indexOf("@book microprocessor")!=-1) {messageData.text="The 8051 Microcontroller and Embedded Systems - Muhammad Ali Mazidi"}
-	if (receiveedData.text.toLowerCase().indexOf("@book discrete math")!=-1) {messageData.text="Kenneth Rosen book titled Discrete Mathematics and Its Applications."}
-	if (receiveedData.text.toLowerCase().indexOf("@book java")!=-1) {messageData.text="Java The Complete Reference, 8th Edition Herbert Schildt"}
-	if (receiveedData.text.toLowerCase().indexOf("@book c++")!=-1) {messageData.text="Object Oriented Programming with C++ - Balagurusamy"}
-	if (receiveedData.text.toLowerCase().indexOf("@book physics")!=-1) {messageData.text="Concepts of Modern Physics - HC Verma"}
-	if (receiveedData.text.toLowerCase().indexOf("@book chemistry")!=-1) {messageData.text="Modern Chemistry - Pradeep"}
-	if (receiveedData.text.toLowerCase().indexOf("@result")!=-1) {var x=Math.random() * (10 - 5) + 5; messageData.text=x.toFixed(2)+" CGPA"}
-	if (receiveedData.text.toLowerCase().indexOf("@contact")!=-1) {var x=Math.floor(Math.random() * (9999999999 - 7811111111) + 7811111111); messageData.text="Call him/her @ " + x}
-	if (receiveedData.text.toLowerCase().indexOf("@attendence")!=-1) {var x=Math.random() * (2 - 0) + 0; if(x<=1){messageData.text="Your attendence is marked as PRESENT for today"} else{messageData.text="Your attendence is marked as ABSENT for today"}}
-	if (receiveedData.text.toLowerCase().indexOf("@date next exam")!=-1) {messageData.text="20 October 2016, 10:00 am - Web Technologies"}
+	
+	if (true) {messageData.text=API_msg}
+	else if (receiveedData.text.toLowerCase().indexOf("whatsup")!=-1) {messageData.text="Nothing much! You tell"}
+	else if (receiveedData.text.toLowerCase().indexOf("how r u")!=-1) {messageData.text="I\'m good. What about you?"}
+	else if (receiveedData.text.toLowerCase().indexOf("hi")!=-1) {messageData.text="Hello"}
+	else if (receiveedData.text.toLowerCase().indexOf("how are you")!=-1) {messageData.text="I\'m good. What about you?"}
+	else if (receiveedData.text.toLowerCase().indexOf("hello")!=-1) {messageData.text="Hi"}
+	else if (receiveedData.text.toLowerCase().indexOf("help")!=-1) {messageData.text="Try the following commands : -\n 1. @assignment\n2. @attendence <roll no>\n3. @result <roll no>\n4. @book <topic name>\n5. @contact <teacher name>\n6. @date <event>\n7. @notes <topic>\n8. @syllabus\n9. @testme "}
+	else if (receiveedData.text.toLowerCase().indexOf("@book database")!=-1) {messageData.text="Database System Concepts - Henry Korth, S.Sudarshan and Abraham Silberschatz."}
+	else if (receiveedData.text.toLowerCase().indexOf("@book microprocessor")!=-1) {messageData.text="The 8051 Microcontroller and Embedded Systems - Muhammad Ali Mazidi"}
+	else if (receiveedData.text.toLowerCase().indexOf("@book discrete math")!=-1) {messageData.text="Kenneth Rosen book titled Discrete Mathematics and Its Applications."}
+	else if (receiveedData.text.toLowerCase().indexOf("@book java")!=-1) {messageData.text="Java The Complete Reference, 8th Edition Herbert Schildt"}
+	else if (receiveedData.text.toLowerCase().indexOf("@book c++")!=-1) {messageData.text="Object Oriented Programming with C++ - Balagurusamy"}
+	else if (receiveedData.text.toLowerCase().indexOf("@book physics")!=-1) {messageData.text="Concepts of Modern Physics - HC Verma"}
+	else if (receiveedData.text.toLowerCase().indexOf("@book chemistry")!=-1) {messageData.text="Modern Chemistry - Pradeep"}
+	else if (receiveedData.text.toLowerCase().indexOf("@result")!=-1) {var x=Math.random() * (10 - 5) + 5; messageData.text=x.toFixed(2)+" CGPA"}
+	else if (receiveedData.text.toLowerCase().indexOf("@contact")!=-1) {var x=Math.floor(Math.random() * (9999999999 - 7811111111) + 7811111111); messageData.text="Call him/her @ " + x}
+	else if (receiveedData.text.toLowerCase().indexOf("@attendence")!=-1) {var x=Math.random() * (2 - 0) + 0; if(x<=1){messageData.text="Your attendence is marked as PRESENT for today"} else{messageData.text="Your attendence is marked as ABSENT for today"}}
+	else if (receiveedData.text.toLowerCase().indexOf("@date next exam")!=-1) {messageData.text="20 October 2016, 10:00 am - Web Technologies"}
 	
 
 
 	// else {messageData.text="Chal bay"}
-	
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-			console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
-		}
-	})
+	request("http://api.program-o.com/v2/chatbot/?bot_id=6&say="+text+"&convo_id=anupkumarpanwar&format=json", function(error, response, body) {
+			// API_msg=body.botsay;
+			messageData.text=JSON.parse(body).botsay;
+		  console.log(JSON.parse(body).botsay);
+		  request({
+		  	url: 'https://graph.facebook.com/v2.6/me/messages',
+		  	qs: {access_token:token},
+		  	method: 'POST',
+		  	json: {
+		  		recipient: {id:sender},
+		  		message: messageData,
+		  	}
+		  }, function(error, response, body) {
+		  	if (error) {
+		  		console.log('Error sending messages: ', error)
+		  	} else if (response.body.error) {
+		  		console.log('Error: ', response.body.error)
+		  	}
+		  })
+		})
+
+
+
 }
 
 function sendGenericMessage(sender) {
